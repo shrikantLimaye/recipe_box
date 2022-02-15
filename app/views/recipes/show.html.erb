@@ -1,3 +1,5 @@
 <h1><%= @recipe.title %></h1>
 <p><%= @recipe.description %></p>
-<%= link_to 'back', root_path, class: 'btn btn-warning'%>
+<%= link_to 'Edit', edit_recipe_path, class: 'btn btn-secondary' %>
+<%= link_to 'Delete', recipe_path, method: :delete, data: {confirm: "Are you sure?"},  class: 'btn btn-danger' %>
+<%= link_to 'Back', root_path, class: 'btn btn-warning'%>

@@ -1,9 +1,27 @@
-<%= form_for @recipe do |f| %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+<%= form_for @recipe, :html => {:class => "form-horizontal center"} do |f| %>
+    <div class="form-group">
+       <strong> <%= f.label :title, class: "col-md-4 control-label" %> </strong>
+        <div class="col-md-4">
+            <%= f.text_field :title, class: "form-control" %>
+        </div>
 
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-
-    <%= f.submit %>
+        <strong><%= f.label :description, class: "col-md-4 control-label" %></strong>
+        <div class="col-md-4">
+            <%= f.text_area :description, class: "form-control" %>
+        </div>
+        <br />
+        <strong><%= f.label :image, class: "col-md-4 control-label" %></strong>
+        <div class="col-md-4">
+            <%= f.file_field :image, class: "form-control" %>
+        </div>
+        <br />
+        <strong><%= f.label :ingredients, class: "col-md-4 control-label" %></strong>
+        <div class="col-md-4">
+            <%= f.fields_for :ingredients do |ingredient| %>
+                <%= render partial: 'ingredient_fields', f: ingredient %>
+            <% end %>
+            <%= link_to_add_association "Add Ingredient", f, :ingredients, class: 'btn btn-secondary' %>
+        </div>
+        <%= f.submit%>
+    </div>
 <% end %>
